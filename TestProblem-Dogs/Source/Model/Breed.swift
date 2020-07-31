@@ -10,17 +10,22 @@ import Foundation
 struct Breed {
     
     let name: String
-    let subbreeds: [Subbreed]?
+    let subbreeds: [Breed]?
     
-    struct Subbreed {
-        let name: String
+    init(name: String) {
+        self.init(name: name, subbreeds: [])
     }
     
     init(name: String, subbreeds: [String]) {
         self.name = name.capitalized
+        
         self.subbreeds = subbreeds.isEmpty
             ? nil
-            : subbreeds.map(\.capitalized).map(Subbreed.init)
-        
+            : subbreeds.map(\.capitalized).map(Breed.init)
     }
+}
+
+struct FullBreed {
+    let breed: String
+    let subbreed: String?
 }

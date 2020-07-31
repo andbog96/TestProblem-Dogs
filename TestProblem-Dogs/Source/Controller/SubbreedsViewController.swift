@@ -9,7 +9,6 @@ import UIKit
 
 class SubbreedsViewController: UIViewController {
     
-    unowned var model: BreedsModelInput!
     var breed: Breed!
     
     private let tableView = UITableView(frame: .zero, style: .plain)
@@ -18,18 +17,24 @@ class SubbreedsViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .white
-        //navigationItem.title = model.breeds.name
+        navigationItem.title = breed.name
         
+        view.addSubview(tableView)
         tableView.register(TableViewCell.self, forCellReuseIdentifier: TableViewCell.reuseIdentifier)
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        tableView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        tableView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        tableView.heightAnchor.constraint(equalTo: view.heightAnchor).isActive = true
     }
-    
 }
 
 extension SubbreedsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        model.breeds?.count ?? 0
+        breed.subbreeds?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -38,14 +43,26 @@ extension SubbreedsViewController: UITableViewDataSource {
             return TableViewCell()
         }
         
-        if let breed = model.breeds?[indexPath.row] {
-            cell.firstLabel.text = breed.name
+        if let subbreed = breed.subbreeds?[indexPath.row] {
+            cell.firstLabel.text = subbreed.name
             cell.accessoryType = .disclosureIndicator
-            if let subbreeds = breed.subbreeds {
-                cell.secondLabel.text = "(\(subbreeds.count) subreeds)"
-            }
         }
         
         return cell
+    }
+}
+
+extension SubbreedsViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let subbreed = breed.subbreeds?[indexPath.row] else {
+            return
+        }
+        
+        let dogsPhotosViewController = DogsPhotosViewController()
+        dogsPhotosViewController.dogsPhotosModel = DogsPhotosModel()
+        dogsPhotosViewController.fullBreed = FullBreed(breed: breed.name, subbreed: subbreed.name)
+        
+        navigationController?.pushViewController(dogsPhotosViewController, animated: true)
     }
 }

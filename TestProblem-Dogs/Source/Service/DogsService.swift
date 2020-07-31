@@ -13,8 +13,10 @@ struct DogsService: DogsServiceProtocol {
     static let shared: Self = Self()
     
     private let allBreedsURLString = "https://dog.ceo/api/breeds/list/all"
-    private func getPictureULRStrings(for breed: String, _ subbreed: String) -> String {
-        "https://dog.ceo/api/" + breed + "/" + subbreed + "/images"
+    private func getPhotosULRStrings(for breed: FullBreed) -> String {
+        "https://dog.ceo/api/breed/" + breed.breed.lowercased()
+            + (breed.subbreed == nil ? "" : ("/" + breed.subbreed!.lowercased()))
+            + "/images"
     }
     
     func getBreeds(_ callback: @escaping ([Breed]?) -> Void) {
@@ -25,7 +27,7 @@ struct DogsService: DogsServiceProtocol {
                 callback(nil)
             case .success:
                 if let json = try? JSONDecoder().decode(BreadsResponse.self, from: response.data!) {
-                    callback(responseMessageToBreeds(json.message))
+                    callback(json.message.map(Breed.init))
                 } else {
                     callback(nil)
                 }
@@ -33,17 +35,30 @@ struct DogsService: DogsServiceProtocol {
         }
     }
     
-    private func responseMessageToBreeds(_ message: [String: [String]]) -> [Breed] {
-        message.map { breedName, subbreeds in
-            Breed(name: breedName, subbreeds: subbreeds)
+    func getDogsPhotos(of breed: FullBreed, _ callback: @escaping ([URL]?) -> Void) {
+        let url = getPhotosULRStrings(for: breed)
+        print(url)
+        
+        AF.request(url).validate().responseJSON { response in
+            switch response.result {
+            case let .failure(error):
+                print(error)
+                callback(nil)
+            case .success:
+                if let json = try? JSONDecoder().decode(DogsPhotosResponse.self, from: response.data!) {
+                    callback(json.message.compactMap(URL.init(string:)))
+                } else {
+                    callback(nil)
+                }
+            }
         }
     }
     
-    func getPictures(for breed: String, _ subbreed: String) -> [URL] {
-        return []
+    private struct BreadsResponse: Codable {
+        let message: [String: [String]]
     }
     
-    struct BreadsResponse: Codable {
-        let message: [String: [String]]
+    private struct DogsPhotosResponse: Codable {
+        let message: [String]
     }
 }

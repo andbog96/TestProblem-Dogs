@@ -51,6 +51,7 @@ class TableViewCell: UITableViewCell {
         super.prepareForReuse()
         
         accessoryType = .none
+        firstLabel.text = ""
+        secondLabel.text = ""
     }
-    
 }

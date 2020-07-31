@@ -8,10 +8,10 @@
 import Foundation
 import Alamofire
 
-class BreedsModel: BreedsModelInput {
+class BreedsModel: BreedsModelProtocol {
     
-    weak var output: BreedsModelOutput!
-    var service: DogsServiceProtocol!
+    weak var delegate: BreedsModelDelegate!
+    var service: DogsServiceProtocol = DogsService.shared
     
     // nil means error
     private(set) var breeds: [Breed]?
@@ -21,7 +21,7 @@ class BreedsModel: BreedsModelInput {
     func loadBreeds() {
         service.getBreeds { breeds in
             self.breeds = breeds?.sorted{$0.name < $1.name}
-            self.output.modelDidLoad()
+            self.delegate.modelDidLoad()
         }
     }
 }

@@ -11,9 +11,9 @@ class BreedsNavigationController: UINavigationController {
     
     init() {
         let breedsViewController = BreedsViewController()
-        let model = BreedsModel()
-        model.service = DogsService.shared
-        breedsViewController.model = model
+        let breedsModel = BreedsModel()
+        breedsModel.service = DogsService.shared
+        breedsViewController.breedsModel = breedsModel
         
         super.init(rootViewController: breedsViewController)
         

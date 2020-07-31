@@ -7,15 +7,19 @@
 
 import Foundation
 
-class DogsPhotosModel: DogsPhotosModelInput {
+
+class DogsPhotosModel: DogsPhotosModelProtocol {
     
+    var delegate: DogsPhotosModelDelegate!
+    var service: DogsServiceProtocol = DogsService.shared
     
-    var output: DogsPhotosModelOutput!
-    var service: DogsServiceProtocol!
+    // nil means error
+    private(set) var dogsPhotos: [URL]?
     
-    private(set) var dogsPhotos = DogsPhotos()
-    
-    func loadPhotos(breedName: String, subbreedName: String?) {
-        
+    func loadDogsPhotos(of breed: FullBreed) {
+        service.getDogsPhotos(of: breed) { photos in
+            self.dogsPhotos = photos
+            self.delegate.modelDidLoad()
+        }
     }
 }

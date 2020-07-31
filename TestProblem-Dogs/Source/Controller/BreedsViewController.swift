@@ -10,7 +10,7 @@ import Alamofire
 
 class BreedsViewController: UIViewController {
     
-    var model: BreedsModelInput!
+    var breedsModel: BreedsModelProtocol!
     
     private let tableView = UITableView(frame: .zero, style: .plain)
     private let activityIndicatorView = UIActivityIndicatorView(style: .large)
@@ -27,8 +27,8 @@ class BreedsViewController: UIViewController {
         activityIndicatorView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         activityIndicatorView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         
-        model.output = self
-        model.loadBreeds()
+        breedsModel.delegate = self
+        breedsModel.loadBreeds()
         
         tableView.register(TableViewCell.self, forCellReuseIdentifier: TableViewCell.reuseIdentifier)
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -39,7 +39,7 @@ class BreedsViewController: UIViewController {
 extension BreedsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        model.breeds?.count ?? 0
+        breedsModel.breeds?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -48,11 +48,11 @@ extension BreedsViewController: UITableViewDataSource {
             return TableViewCell()
         }
         
-        if let breed = model.breeds?[indexPath.row] {
+        if let breed = breedsModel.breeds?[indexPath.row] {
             cell.firstLabel.text = breed.name
             cell.accessoryType = .disclosureIndicator
             if let subbreeds = breed.subbreeds {
-                cell.secondLabel.text = "(\(subbreeds.count) subreeds)"
+                cell.secondLabel.text = "(\(subbreeds.count) subbreeds)"
             }
         }
         
@@ -63,34 +63,38 @@ extension BreedsViewController: UITableViewDataSource {
 extension BreedsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let breed = model.breeds?[indexPath.row] else {
+        guard let breed = breedsModel.breeds?[indexPath.row] else {
             return
         }
         
         if let _ = breed.subbreeds {
-            let subbreedsViewController = SubbreedsViewController()
-            subbreedsViewController.model = model
+            let subbreedsViewController = SubbreedsViewController()            
             subbreedsViewController.breed = breed
+            
             navigationController?.pushViewController(subbreedsViewController, animated: true)
         } else {
+            let dogsPhotosViewController = DogsPhotosViewController()
+            dogsPhotosViewController.dogsPhotosModel = DogsPhotosModel()
+            dogsPhotosViewController.fullBreed = FullBreed(breed: breed.name, subbreed: nil)
             
+            navigationController?.pushViewController(dogsPhotosViewController, animated: true)
         }
     }
 }
 
-extension BreedsViewController: BreedsModelOutput {
+extension BreedsViewController: BreedsModelDelegate {
     func modelDidLoad() {
         DispatchQueue.main.async {
             updateView()
         }
         
         func updateView() {
-            guard model.breeds != nil else {
+            guard breedsModel.breeds != nil else {
                 let alertController = UIAlertController(title: "Some server error",
                                                         message: "Try connect later",
                                                         preferredStyle: .alert)
                 let alertAction = UIAlertAction(title: "Ok", style: .default) { (_) in
-                    self.model.loadBreeds()
+                    self.breedsModel.loadBreeds()
                 }
                 
                 alertController.addAction(alertAction)

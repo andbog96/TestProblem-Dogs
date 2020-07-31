@@ -1,11 +1,11 @@
 //
-//  DogsPhotosModelOutput.swift
+//  BreedsModelDelegate.swift
 //  TestProblem-Dogs
 //
 //  Created by Andrey Bogdanov on 30.07.2020.
 //
 
-protocol DogsPhotosModelOutput: class {
+protocol BreedsModelDelegate: class {
     
     func modelDidLoad()
 }
