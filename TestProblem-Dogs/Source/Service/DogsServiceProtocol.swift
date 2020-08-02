@@ -10,5 +10,5 @@ import Foundation
 protocol DogsServiceProtocol {
     
     func getBreeds(_ callback: @escaping ([Breed]?) -> Void)
-    func getDogsPhotos(of breed: FullBreed, _ callback: @escaping ([URL]?) -> Void)
+    func getPhotos(of breed: FullBreed, _ callback: @escaping ([URL]?) -> Void)
 }

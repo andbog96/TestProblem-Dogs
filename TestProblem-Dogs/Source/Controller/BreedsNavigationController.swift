@@ -17,7 +17,7 @@ class BreedsNavigationController: UINavigationController {
         
         super.init(rootViewController: breedsViewController)
         
-        let image = UIImage(systemName: "list.bullet")
+        let image = UIImage(systemName: "list.bullet.rectangle")
         tabBarItem = UITabBarItem(title: "List", image: image, tag: 0)
     }
     

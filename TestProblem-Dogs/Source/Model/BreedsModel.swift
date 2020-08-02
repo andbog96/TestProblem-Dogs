@@ -14,13 +14,12 @@ class BreedsModel: BreedsModelProtocol {
     var service: DogsServiceProtocol = DogsService.shared
     
     // nil means error
-    private(set) var breeds: [Breed]?
-    
-    //var dogsPhotos: DogsPhotos
+    private(set) var breed: Breed?
     
     func loadBreeds() {
         service.getBreeds { breeds in
-            self.breeds = breeds?.sorted{$0.name < $1.name}
+            self.breed = breeds.map(Breed.init)
+            
             self.delegate.modelDidLoad()
         }
     }

@@ -36,7 +36,7 @@ class TableViewCell: UITableViewCell {
         addSubview(firstLabel)
         addSubview(secondLabel)
         
-        firstLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: spacing).isActive = true
+        firstLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: spacing).isActive = true
         firstLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         
         secondLabel.leadingAnchor.constraint(equalTo: firstLabel.trailingAnchor, constant: spacing).isActive = true

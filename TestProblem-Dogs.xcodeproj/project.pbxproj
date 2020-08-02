@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C12BF91824D36F7B00DC88F7 /* DogsPhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12BF91724D36F7B00DC88F7 /* DogsPhotosViewController.swift */; };
 		C14FA51B24D1CBD4008CA79C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14FA51A24D1CBD4008CA79C /* AppDelegate.swift */; };
 		C14FA51D24D1CBD4008CA79C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14FA51C24D1CBD4008CA79C /* SceneDelegate.swift */; };
 		C14FA52524D1CBD4008CA79C /* TestProblem_Dogs.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C14FA52324D1CBD4008CA79C /* TestProblem_Dogs.xcdatamodeld */; };
@@ -24,15 +23,17 @@
 		C14FA55124D2A2DE008CA79C /* Breed.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14FA55024D2A2DE008CA79C /* Breed.swift */; };
 		C14FA55424D2AA8A008CA79C /* DogsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14FA55324D2AA8A008CA79C /* DogsService.swift */; };
 		C14FA55624D2AADC008CA79C /* DogsServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14FA55524D2AADC008CA79C /* DogsServiceProtocol.swift */; };
+		C16E285E24D44BF6009782CE /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = C16E285D24D44BF6009782CE /* Kingfisher */; };
+		C16E286024D47FE7009782CE /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16E285F24D47FE7009782CE /* PhotosViewController.swift */; };
+		C16E286224D547F9009782CE /* HeartButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16E286124D547F9009782CE /* HeartButton.swift */; };
+		C16E286524D5CB1C009782CE /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C16E286424D5CB1C009782CE /* RealmSwift */; };
 		C18C30B124D2FA75001807B9 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18C30AF24D2FA75001807B9 /* TableViewCell.swift */; };
-		C18C30B424D313FE001807B9 /* SubbreedsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18C30B324D313FE001807B9 /* SubbreedsViewController.swift */; };
-		C18C30B924D35494001807B9 /* DogsPhotosModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18C30B824D35494001807B9 /* DogsPhotosModel.swift */; };
-		C18C30BB24D354D7001807B9 /* DogsPhotosModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18C30BA24D354D7001807B9 /* DogsPhotosModelProtocol.swift */; };
-		C18C30BD24D354E4001807B9 /* DogsPhotosModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18C30BC24D354E4001807B9 /* DogsPhotosModelDelegate.swift */; };
+		C18C30B924D35494001807B9 /* PhotosModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18C30B824D35494001807B9 /* PhotosModel.swift */; };
+		C18C30BB24D354D7001807B9 /* PhotosModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18C30BA24D354D7001807B9 /* PhotosModelProtocol.swift */; };
+		C18C30BD24D354E4001807B9 /* PhotosModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18C30BC24D354E4001807B9 /* PhotosModelDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		C12BF91724D36F7B00DC88F7 /* DogsPhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogsPhotosViewController.swift; sourceTree = "<group>"; };
 		C14FA51724D1CBD4008CA79C /* TestProblem-Dogs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TestProblem-Dogs.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C14FA51A24D1CBD4008CA79C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C14FA51C24D1CBD4008CA79C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -50,11 +51,12 @@
 		C14FA55024D2A2DE008CA79C /* Breed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Breed.swift; sourceTree = "<group>"; };
 		C14FA55324D2AA8A008CA79C /* DogsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogsService.swift; sourceTree = "<group>"; };
 		C14FA55524D2AADC008CA79C /* DogsServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogsServiceProtocol.swift; sourceTree = "<group>"; };
+		C16E285F24D47FE7009782CE /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
+		C16E286124D547F9009782CE /* HeartButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartButton.swift; sourceTree = "<group>"; };
 		C18C30AF24D2FA75001807B9 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
-		C18C30B324D313FE001807B9 /* SubbreedsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubbreedsViewController.swift; sourceTree = "<group>"; };
-		C18C30B824D35494001807B9 /* DogsPhotosModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogsPhotosModel.swift; sourceTree = "<group>"; };
-		C18C30BA24D354D7001807B9 /* DogsPhotosModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogsPhotosModelProtocol.swift; sourceTree = "<group>"; };
-		C18C30BC24D354E4001807B9 /* DogsPhotosModelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogsPhotosModelDelegate.swift; sourceTree = "<group>"; };
+		C18C30B824D35494001807B9 /* PhotosModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosModel.swift; sourceTree = "<group>"; };
+		C18C30BA24D354D7001807B9 /* PhotosModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosModelProtocol.swift; sourceTree = "<group>"; };
+		C18C30BC24D354E4001807B9 /* PhotosModelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosModelDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C16E286524D5CB1C009782CE /* RealmSwift in Frameworks */,
+				C16E285E24D44BF6009782CE /* Kingfisher in Frameworks */,
 				C14FA54524D1EC51008CA79C /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -117,9 +121,9 @@
 				C14FA54624D1ED25008CA79C /* BreedsModel.swift */,
 				C14FA54C24D29F62008CA79C /* BreedsModelProtocol.swift */,
 				C14FA54E24D2A057008CA79C /* BreedsModelDelegate.swift */,
-				C18C30B824D35494001807B9 /* DogsPhotosModel.swift */,
-				C18C30BA24D354D7001807B9 /* DogsPhotosModelProtocol.swift */,
-				C18C30BC24D354E4001807B9 /* DogsPhotosModelDelegate.swift */,
+				C18C30B824D35494001807B9 /* PhotosModel.swift */,
+				C18C30BA24D354D7001807B9 /* PhotosModelProtocol.swift */,
+				C18C30BC24D354E4001807B9 /* PhotosModelDelegate.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -128,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				C18C30AF24D2FA75001807B9 /* TableViewCell.swift */,
+				C16E286124D547F9009782CE /* HeartButton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -138,8 +143,7 @@
 				C14FA53924D1D4E6008CA79C /* MainTabBarController.swift */,
 				C14FA53F24D1DC76008CA79C /* BreedsNavigationController.swift */,
 				C14FA53B24D1D611008CA79C /* BreedsViewController.swift */,
-				C18C30B324D313FE001807B9 /* SubbreedsViewController.swift */,
-				C12BF91724D36F7B00DC88F7 /* DogsPhotosViewController.swift */,
+				C16E285F24D47FE7009782CE /* PhotosViewController.swift */,
 				C14FA54124D1DCD8008CA79C /* FavouritesNavigationController.swift */,
 			);
 			path = Controller;
@@ -172,6 +176,8 @@
 			name = "TestProblem-Dogs";
 			packageProductDependencies = (
 				C14FA54424D1EC51008CA79C /* Alamofire */,
+				C16E285D24D44BF6009782CE /* Kingfisher */,
+				C16E286424D5CB1C009782CE /* RealmSwift */,
 			);
 			productName = "TestProblem-Dogs";
 			productReference = C14FA51724D1CBD4008CA79C /* TestProblem-Dogs.app */;
@@ -202,6 +208,8 @@
 			mainGroup = C14FA50E24D1CBD4008CA79C;
 			packageReferences = (
 				C14FA54324D1EC51008CA79C /* XCRemoteSwiftPackageReference "Alamofire" */,
+				C16E285C24D44BF6009782CE /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				C16E286324D5CB1C009782CE /* XCRemoteSwiftPackageReference "realm-cocoa" */,
 			);
 			productRefGroup = C14FA51824D1CBD4008CA79C /* Products */;
 			projectDirPath = "";
@@ -229,22 +237,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C16E286224D547F9009782CE /* HeartButton.swift in Sources */,
 				C18C30B124D2FA75001807B9 /* TableViewCell.swift in Sources */,
 				C14FA54724D1ED25008CA79C /* BreedsModel.swift in Sources */,
 				C14FA55424D2AA8A008CA79C /* DogsService.swift in Sources */,
 				C14FA55624D2AADC008CA79C /* DogsServiceProtocol.swift in Sources */,
-				C18C30BD24D354E4001807B9 /* DogsPhotosModelDelegate.swift in Sources */,
+				C18C30BD24D354E4001807B9 /* PhotosModelDelegate.swift in Sources */,
 				C14FA51B24D1CBD4008CA79C /* AppDelegate.swift in Sources */,
-				C18C30B424D313FE001807B9 /* SubbreedsViewController.swift in Sources */,
 				C14FA53A24D1D4E6008CA79C /* MainTabBarController.swift in Sources */,
 				C14FA54F24D2A057008CA79C /* BreedsModelDelegate.swift in Sources */,
-				C12BF91824D36F7B00DC88F7 /* DogsPhotosViewController.swift in Sources */,
+				C16E286024D47FE7009782CE /* PhotosViewController.swift in Sources */,
 				C14FA54224D1DCD8008CA79C /* FavouritesNavigationController.swift in Sources */,
 				C14FA52524D1CBD4008CA79C /* TestProblem_Dogs.xcdatamodeld in Sources */,
 				C14FA55124D2A2DE008CA79C /* Breed.swift in Sources */,
-				C18C30B924D35494001807B9 /* DogsPhotosModel.swift in Sources */,
+				C18C30B924D35494001807B9 /* PhotosModel.swift in Sources */,
 				C14FA53C24D1D611008CA79C /* BreedsViewController.swift in Sources */,
-				C18C30BB24D354D7001807B9 /* DogsPhotosModelProtocol.swift in Sources */,
+				C18C30BB24D354D7001807B9 /* PhotosModelProtocol.swift in Sources */,
 				C14FA54D24D29F62008CA79C /* BreedsModelProtocol.swift in Sources */,
 				C14FA51D24D1CBD4008CA79C /* SceneDelegate.swift in Sources */,
 				C14FA54024D1DC76008CA79C /* BreedsNavigationController.swift in Sources */,
@@ -316,7 +324,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -371,7 +379,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -453,6 +461,22 @@
 				minimumVersion = 5.2.2;
 			};
 		};
+		C16E285C24D44BF6009782CE /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.14.1;
+			};
+		};
+		C16E286324D5CB1C009782CE /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-cocoa.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.3.3;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -460,6 +484,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C14FA54324D1EC51008CA79C /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		C16E285D24D44BF6009782CE /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C16E285C24D44BF6009782CE /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+		C16E286424D5CB1C009782CE /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C16E286324D5CB1C009782CE /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = RealmSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 

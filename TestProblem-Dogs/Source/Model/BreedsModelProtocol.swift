@@ -10,7 +10,7 @@ protocol BreedsModelProtocol: class {
     var delegate: BreedsModelDelegate! { get set }
     var service: DogsServiceProtocol { get set }
     
-    var breeds: [Breed]? { get }
+    var breed: Breed? { get }
     
     func loadBreeds()
 }

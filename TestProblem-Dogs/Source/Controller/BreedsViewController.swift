@@ -11,6 +11,7 @@ import Alamofire
 class BreedsViewController: UIViewController {
     
     var breedsModel: BreedsModelProtocol!
+    var breed: Breed? = nil
     
     private let tableView = UITableView(frame: .zero, style: .plain)
     private let activityIndicatorView = UIActivityIndicatorView(style: .large)
@@ -18,7 +19,7 @@ class BreedsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         navigationItem.title = "Breeds"
         
         activityIndicatorView.translatesAutoresizingMaskIntoConstraints = false
@@ -27,28 +28,45 @@ class BreedsViewController: UIViewController {
         activityIndicatorView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         activityIndicatorView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         
-        breedsModel.delegate = self
-        breedsModel.loadBreeds()
+        if (breed == nil) {
+            breedsModel.delegate = self
+            breedsModel.loadBreeds()
+        } else {
+            setupView()
+        }
         
         tableView.register(TableViewCell.self, forCellReuseIdentifier: TableViewCell.reuseIdentifier)
         tableView.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    private func setupView() {
+        activityIndicatorView.removeFromSuperview()
         
+        navigationItem.title = breed?.name
+        
+        view.addSubview(tableView)
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        tableView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        tableView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        tableView.heightAnchor.constraint(equalTo: view.heightAnchor).isActive = true
     }
 }
 
 extension BreedsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        breedsModel.breeds?.count ?? 0
+        breed?.subbreeds?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCell.reuseIdentifier, for: indexPath)
-                as? TableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCell.reuseIdentifier,
+                                                       for: indexPath) as? TableViewCell else {
             return TableViewCell()
         }
         
-        if let breed = breedsModel.breeds?[indexPath.row] {
+        if let breed = breed?.subbreeds?[indexPath.row] {
             cell.firstLabel.text = breed.name
             cell.accessoryType = .disclosureIndicator
             if let subbreeds = breed.subbreeds {
@@ -63,21 +81,22 @@ extension BreedsViewController: UITableViewDataSource {
 extension BreedsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let breed = breedsModel.breeds?[indexPath.row] else {
+        guard let breed = breed,
+            let subbreed = breed.subbreeds?[indexPath.row] else {
             return
         }
         
-        if let _ = breed.subbreeds {
-            let subbreedsViewController = SubbreedsViewController()            
-            subbreedsViewController.breed = breed
+        if subbreed.subbreeds != nil {
+            let subbreedsViewController = BreedsViewController()
+            subbreedsViewController.breed = subbreed
             
             navigationController?.pushViewController(subbreedsViewController, animated: true)
         } else {
-            let dogsPhotosViewController = DogsPhotosViewController()
-            dogsPhotosViewController.dogsPhotosModel = DogsPhotosModel()
-            dogsPhotosViewController.fullBreed = FullBreed(breed: breed.name, subbreed: nil)
+            let photosViewController = PhotosViewController()
+            photosViewController.photosModel = PhotosModel()
+            photosViewController.fullBreed = FullBreed(breed: breed.name, subbreed: subbreed.name)
             
-            navigationController?.pushViewController(dogsPhotosViewController, animated: true)
+            navigationController?.pushViewController(photosViewController, animated: true)
         }
     }
 }
@@ -85,33 +104,22 @@ extension BreedsViewController: UITableViewDelegate {
 extension BreedsViewController: BreedsModelDelegate {
     func modelDidLoad() {
         DispatchQueue.main.async {
-            updateView()
-        }
-        
-        func updateView() {
-            guard breedsModel.breeds != nil else {
+            guard let breed = self.breedsModel.breed else {
                 let alertController = UIAlertController(title: "Some server error",
                                                         message: "Try connect later",
                                                         preferredStyle: .alert)
-                let alertAction = UIAlertAction(title: "Ok", style: .default) { (_) in
+                let alertAction = UIAlertAction(title: "Ok", style: .default) { _ in
                     self.breedsModel.loadBreeds()
                 }
                 
                 alertController.addAction(alertAction)
-                present(alertController, animated: true)
+                self.present(alertController, animated: true)
                 
                 return
             }
             
-            activityIndicatorView.removeFromSuperview()
-            
-            view.addSubview(tableView)
-            tableView.delegate = self
-            tableView.dataSource = self
-            tableView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-            tableView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-            tableView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
-            tableView.heightAnchor.constraint(equalTo: view.heightAnchor).isActive = true
+            self.breed = breed
+            self.setupView()
         }
     }
 }

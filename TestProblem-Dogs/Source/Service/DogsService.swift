@@ -35,9 +35,10 @@ struct DogsService: DogsServiceProtocol {
         }
     }
     
-    func getDogsPhotos(of breed: FullBreed, _ callback: @escaping ([URL]?) -> Void) {
-        let url = getPhotosULRStrings(for: breed)
-        print(url)
+    func getPhotos(of breed: FullBreed, _ callback: @escaping ([URL]?) -> Void) {
+        let url = breed.isRoot
+            ? getPhotosULRStrings(for: FullBreed(breed: breed.subbreed!, subbreed: nil))
+            : getPhotosULRStrings(for: breed)
         
         AF.request(url).validate().responseJSON { response in
             switch response.result {
@@ -45,7 +46,7 @@ struct DogsService: DogsServiceProtocol {
                 print(error)
                 callback(nil)
             case .success:
-                if let json = try? JSONDecoder().decode(DogsPhotosResponse.self, from: response.data!) {
+                if let json = try? JSONDecoder().decode(PhotosResponse.self, from: response.data!) {
                     callback(json.message.compactMap(URL.init(string:)))
                 } else {
                     callback(nil)
@@ -58,7 +59,7 @@ struct DogsService: DogsServiceProtocol {
         let message: [String: [String]]
     }
     
-    private struct DogsPhotosResponse: Codable {
+    private struct PhotosResponse: Codable {
         let message: [String]
     }
 }
