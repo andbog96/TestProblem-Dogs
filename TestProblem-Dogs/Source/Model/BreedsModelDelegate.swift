@@ -7,5 +7,5 @@
 
 protocol BreedsModelDelegate: class {
     
-    func modelDidLoad()
+    func breedsModelDidLoad()
 }

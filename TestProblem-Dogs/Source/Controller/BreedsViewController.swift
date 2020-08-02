@@ -102,7 +102,7 @@ extension BreedsViewController: UITableViewDelegate {
 }
 
 extension BreedsViewController: BreedsModelDelegate {
-    func modelDidLoad() {
+    func breedsModelDidLoad() {
         DispatchQueue.main.async {
             guard let breed = self.breedsModel.breed else {
                 let alertController = UIAlertController(title: "Some server error",

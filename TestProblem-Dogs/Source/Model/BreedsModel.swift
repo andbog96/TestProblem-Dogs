@@ -8,7 +8,7 @@
 import Foundation
 import Alamofire
 
-class BreedsModel: BreedsModelProtocol {
+final class BreedsModel: BreedsModelProtocol {
     
     weak var delegate: BreedsModelDelegate!
     var service: DogsServiceProtocol = DogsService.shared
@@ -20,7 +20,7 @@ class BreedsModel: BreedsModelProtocol {
         service.getBreeds { breeds in
             self.breed = breeds.map(Breed.init)
             
-            self.delegate.modelDidLoad()
+            self.delegate.breedsModelDidLoad()
         }
     }
 }

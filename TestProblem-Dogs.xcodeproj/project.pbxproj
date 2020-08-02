@@ -27,6 +27,10 @@
 		C16E286024D47FE7009782CE /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16E285F24D47FE7009782CE /* PhotosViewController.swift */; };
 		C16E286224D547F9009782CE /* HeartButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16E286124D547F9009782CE /* HeartButton.swift */; };
 		C16E286524D5CB1C009782CE /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C16E286424D5CB1C009782CE /* RealmSwift */; };
+		C16E286724D6E453009782CE /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16E286624D6E453009782CE /* PhotoCollectionViewCell.swift */; };
+		C16E286924D7170A009782CE /* FavouritesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16E286824D7170A009782CE /* FavouritesModel.swift */; };
+		C16E286B24D71BFA009782CE /* FavouritesModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16E286A24D71BFA009782CE /* FavouritesModelProtocol.swift */; };
+		C16E286D24D71C05009782CE /* FavouritesModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16E286C24D71C05009782CE /* FavouritesModelDelegate.swift */; };
 		C18C30B124D2FA75001807B9 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18C30AF24D2FA75001807B9 /* TableViewCell.swift */; };
 		C18C30B924D35494001807B9 /* PhotosModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18C30B824D35494001807B9 /* PhotosModel.swift */; };
 		C18C30BB24D354D7001807B9 /* PhotosModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18C30BA24D354D7001807B9 /* PhotosModelProtocol.swift */; };
@@ -53,6 +57,10 @@
 		C14FA55524D2AADC008CA79C /* DogsServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogsServiceProtocol.swift; sourceTree = "<group>"; };
 		C16E285F24D47FE7009782CE /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
 		C16E286124D547F9009782CE /* HeartButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartButton.swift; sourceTree = "<group>"; };
+		C16E286624D6E453009782CE /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
+		C16E286824D7170A009782CE /* FavouritesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesModel.swift; sourceTree = "<group>"; };
+		C16E286A24D71BFA009782CE /* FavouritesModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesModelProtocol.swift; sourceTree = "<group>"; };
+		C16E286C24D71C05009782CE /* FavouritesModelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesModelDelegate.swift; sourceTree = "<group>"; };
 		C18C30AF24D2FA75001807B9 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		C18C30B824D35494001807B9 /* PhotosModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosModel.swift; sourceTree = "<group>"; };
 		C18C30BA24D354D7001807B9 /* PhotosModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosModelProtocol.swift; sourceTree = "<group>"; };
@@ -124,6 +132,9 @@
 				C18C30B824D35494001807B9 /* PhotosModel.swift */,
 				C18C30BA24D354D7001807B9 /* PhotosModelProtocol.swift */,
 				C18C30BC24D354E4001807B9 /* PhotosModelDelegate.swift */,
+				C16E286824D7170A009782CE /* FavouritesModel.swift */,
+				C16E286A24D71BFA009782CE /* FavouritesModelProtocol.swift */,
+				C16E286C24D71C05009782CE /* FavouritesModelDelegate.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -133,6 +144,7 @@
 			children = (
 				C18C30AF24D2FA75001807B9 /* TableViewCell.swift */,
 				C16E286124D547F9009782CE /* HeartButton.swift */,
+				C16E286624D6E453009782CE /* PhotoCollectionViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -238,6 +250,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C16E286224D547F9009782CE /* HeartButton.swift in Sources */,
+				C16E286724D6E453009782CE /* PhotoCollectionViewCell.swift in Sources */,
 				C18C30B124D2FA75001807B9 /* TableViewCell.swift in Sources */,
 				C14FA54724D1ED25008CA79C /* BreedsModel.swift in Sources */,
 				C14FA55424D2AA8A008CA79C /* DogsService.swift in Sources */,
@@ -246,6 +259,7 @@
 				C14FA51B24D1CBD4008CA79C /* AppDelegate.swift in Sources */,
 				C14FA53A24D1D4E6008CA79C /* MainTabBarController.swift in Sources */,
 				C14FA54F24D2A057008CA79C /* BreedsModelDelegate.swift in Sources */,
+				C16E286924D7170A009782CE /* FavouritesModel.swift in Sources */,
 				C16E286024D47FE7009782CE /* PhotosViewController.swift in Sources */,
 				C14FA54224D1DCD8008CA79C /* FavouritesNavigationController.swift in Sources */,
 				C14FA52524D1CBD4008CA79C /* TestProblem_Dogs.xcdatamodeld in Sources */,
@@ -255,7 +269,9 @@
 				C18C30BB24D354D7001807B9 /* PhotosModelProtocol.swift in Sources */,
 				C14FA54D24D29F62008CA79C /* BreedsModelProtocol.swift in Sources */,
 				C14FA51D24D1CBD4008CA79C /* SceneDelegate.swift in Sources */,
+				C16E286D24D71C05009782CE /* FavouritesModelDelegate.swift in Sources */,
 				C14FA54024D1DC76008CA79C /* BreedsNavigationController.swift in Sources */,
+				C16E286B24D71BFA009782CE /* FavouritesModelProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

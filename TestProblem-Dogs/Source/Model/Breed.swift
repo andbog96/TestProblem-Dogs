@@ -38,7 +38,7 @@ struct Breed {
     }
 }
 
-struct FullBreed {
+struct FullBreed: Hashable {
     let breed: String
     let subbreed: String?
     

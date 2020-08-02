@@ -8,7 +8,7 @@
 import Foundation
 
 
-class PhotosModel: PhotosModelProtocol {
+final class PhotosModel: PhotosModelProtocol {
     
     var delegate: PhotosModelDelegate!
     var service: DogsServiceProtocol = DogsService.shared
@@ -17,9 +17,10 @@ class PhotosModel: PhotosModelProtocol {
     private(set) var photos: [URL]?
     
     func loadPhotos(of breed: FullBreed) {
-        service.getPhotos(of: breed) { photos in
+        service.getPhotos(of: breed) { [self] photos in
             self.photos = photos
-            self.delegate.modelDidLoad()
+            
+            delegate.photosModelDidLoad()
         }
     }
 }

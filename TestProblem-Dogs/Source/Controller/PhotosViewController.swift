@@ -10,18 +10,14 @@ import Kingfisher
 
 class PhotosViewController: UIViewController {
     
-    private var imageViewsCount = 3
-    
     var fullBreed: FullBreed!
     var photosModel: PhotosModel!
     
     private let activityIndicatorView = UIActivityIndicatorView(style: .large)
-    private let scrollView = UIScrollView()
-    private let stackView = UIStackView()
+    private var collectionView: UICollectionView!
     private let heartButton = HeartButton()
     
     private var currentPage = 0
-    private var currentScrollViewOffsetX: CGFloat = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,9 +28,7 @@ class PhotosViewController: UIViewController {
                                                             action: #selector(sharePhoto))
         
         activityIndicatorViewSetup()
-        scrollViewSetup()
-        stackViewSetup()
-        heartButtonSetup()
+        collectionViewSetup()
         
         photosModel.delegate = self
         photosModel.loadPhotos(of: fullBreed)
@@ -43,23 +37,11 @@ class PhotosViewController: UIViewController {
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         
-        coordinator.animate(alongsideTransition: { contex in
-            self.updateScrollOffset()
+        coordinator.animate(alongsideTransition: { [self] _ in
+            let offsetX = CGFloat(currentPage) * collectionView.frame.width
+            collectionView.setContentOffset(CGPoint(x: offsetX, y: 0), animated: false)
+            collectionView.collectionViewLayout.invalidateLayout()
         }, completion: nil)
-    }
-    
-    private func updateScrollOffset(animated: Bool = true) {
-        var offsetX: CGFloat
-        if currentPage == 0 {
-            offsetX = 0
-        } else if currentPage == (photosModel.photos?.count ?? 0) - 1 {
-            offsetX = CGFloat(imageViewsCount - 1) * scrollView.frame.width
-        } else {
-            offsetX = CGFloat(imageViewsCount / 2) * scrollView.frame.width
-        }
-        scrollView.setContentOffset(CGPoint(x: offsetX, y: 0), animated: animated)
-        
-        currentScrollViewOffsetX = scrollView.contentOffset.x
     }
     
     private func activityIndicatorViewSetup() {
@@ -70,27 +52,17 @@ class PhotosViewController: UIViewController {
         activityIndicatorView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
     }
     
-    private func scrollViewSetup() {
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.showsVerticalScrollIndicator = false
-        scrollView.showsHorizontalScrollIndicator = false
-        scrollView.isPagingEnabled = true
-        scrollView.contentSize.height = 0 // turn off vertical scroll
-        scrollView.delegate = self
-        view.addSubview(scrollView)
-        scrollView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
-        scrollView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor).isActive = true
-        scrollView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor).isActive = true
-        scrollView.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor).isActive = true
-    }
-    
-    private func stackViewSetup() {
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.addSubview(stackView)
-        stackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
-        stackView.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
-        stackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor).isActive = true
-        stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
+    private func collectionViewSetup() {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.minimumLineSpacing = 0
+        collectionView = UICollectionView(frame: view.frame, collectionViewLayout: layout)
+        collectionView.isPagingEnabled = true
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.backgroundColor = .systemBackground
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.register(PhotoCollectionViewCell.self,
+                                forCellWithReuseIdentifier: PhotoCollectionViewCell.reuseIdentifier)
     }
     
     private func heartButtonSetup() {
@@ -101,9 +73,24 @@ class PhotosViewController: UIViewController {
         heartButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -40)
             .isActive = true
         
-        //heartButton.addTarget(<#T##target: Any?##Any?#>, action: <#T##Selector#>, for: <#T##UIControl.Event#>)
+        heartButton.addTarget(nil, action: #selector(heartButtonTouchUPInside(sender:)), for: .touchUpInside)
         
         updateHeartButtonImage()
+    }
+    
+    private func setupView() {
+        view.addSubview(collectionView)
+        collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
+        collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
+        
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        
+        heartButtonSetup()
+        
+        activityIndicatorView.removeFromSuperview()
     }
     
     private func updateHeartButtonImage() {
@@ -111,15 +98,27 @@ class PhotosViewController: UIViewController {
         //
     }
     
+    @objc func heartButtonTouchUPInside(sender: UIButton) {
+        
+        print(sender)
+    }
+    
     @objc func sharePhoto() {
         func share(_ action: UIAlertAction) {
-            if let imageView = stackView.arrangedSubviews[currentPage] as? UIImageView {
-                let image = imageView.image!
-                let activity = UIActivityViewController(activityItems: [image], applicationActivities: nil)
-                present(activity, animated: true)
+            if let photoURL = photosModel.photos?[currentPage] {
+                KingfisherManager.shared.retrieveImage(with: photoURL) { result in
+                    switch result {
+                    case .failure(_):
+                        self.showAlert()
+                    case .success(let value):
+                        let activity = UIActivityViewController(activityItems: [value.image],
+                                                                applicationActivities: nil)
+                        self.present(activity, animated: true)
+                    }
+                }
             }
         }
-        
+
         let alertController = UIAlertController(title: "Share photo",
                                                 message: nil,
                                                 preferredStyle: .actionSheet)
@@ -127,8 +126,8 @@ class PhotosViewController: UIViewController {
         alertController.addAction(shareAction)
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alertController.addAction(cancelAction)
-        
-        self.present(alertController, animated: true)
+
+        present(alertController, animated: true)
     }
     
     private func showAlert(handler: ((UIAlertAction) -> Void)? = nil) {
@@ -142,81 +141,58 @@ class PhotosViewController: UIViewController {
             self.present(alertController, animated: true)
         }
     }
+}
+
+extension PhotosViewController: UICollectionViewDelegateFlowLayout {
     
-    private func updatePhotos() {
-        guard let photos = photosModel.photos,
-              let imageViews = stackView.arrangedSubviews as? [UIImageView] else {
-            print("updatePhotos guard fell")
-            return
-        }
-        
-        if currentPage == 0 {
-            for i in 0..<imageViews.count {
-                let imageView = imageViews[i]
-                let photoIndex = currentPage + i
-                imageView.kf.setImage(with: photos[photoIndex]) { result in
-                    if case .failure(_) = result {
-                        self.showAlert()
-                    }
-                }
-            }
-        } else if currentPage == photos.count - 1 {
-            for i in 0..<imageViews.count {
-                let imageView = imageViews[i]
-                let photoIndex = currentPage + i - (imageViews.count - 1)
-                imageView.kf.setImage(with: photos[photoIndex]) { result in
-                    if case .failure(_) = result {
-                        self.showAlert()
-                    }
-                }
-            }
-        } else {
-            for i in 0..<imageViews.count {
-                let imageView = imageViews[i]
-                let photoIndex = currentPage + i - (imageViews.count / 2)
-                if 0 <= photoIndex && photoIndex < photos.count {
-                    imageView.kf.setImage(with: photos[photoIndex]) { result in
-                        if case .failure(_) = result {
-                            self.showAlert()
-                        }
-                    }
-                }
-            }
-            
-            updateScrollOffset(animated: false)
-        }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
     }
 }
 
-extension PhotosViewController: UIScrollViewDelegate {
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        print("scrollViewDidEndDragging", scrollView.contentOffset.x)
-    }
+extension PhotosViewController: UICollectionViewDelegate {
+    
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        if currentScrollViewOffsetX > scrollView.contentOffset.x {
-            currentPage -= 1
-        } else if currentScrollViewOffsetX < scrollView.contentOffset.x {
-            currentPage += 1
-        } else {
-            return
+        currentPage = Int(collectionView.contentOffset.x / collectionView.frame.width)
+        updateHeartButtonImage()
+    }
+}
+
+extension PhotosViewController: UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        photosModel.photos?.count ?? 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: PhotoCollectionViewCell.reuseIdentifier,
+                for: indexPath) as? PhotoCollectionViewCell else {
+            return PhotoCollectionViewCell()
         }
         
-        currentScrollViewOffsetX = scrollView.contentOffset.x
-        print(currentPage)
+        if let photoURL = photosModel.photos?[indexPath.row] {
+            cell.setImage(photoURL) { result in
+                if case .failure(_) = result {
+                    self.showAlert()
+                }
+            }
+        }
         
-        updateHeartButtonImage()
-        updatePhotos()
+        return cell
     }
 }
 
 extension PhotosViewController: PhotosModelDelegate {
-    func modelDidLoad() {
+    func photosModelDidLoad() {
         DispatchQueue.main.async {
             updateView()
         }
         
         func updateView() {
-            guard let photos = photosModel.photos else {
+            guard photosModel.photos != nil else {
                 showAlert { [self] _ in
                     photosModel.loadPhotos(of: fullBreed)
                 }
@@ -224,21 +200,7 @@ extension PhotosViewController: PhotosModelDelegate {
                 return
             }
             
-            activityIndicatorView.removeFromSuperview()
-            
-            imageViewsCount = min(imageViewsCount, photos.count)
-            for _ in 0..<imageViewsCount {
-                let imageView = UIImageView()
-                imageView.translatesAutoresizingMaskIntoConstraints = false
-                imageView.contentMode = .scaleAspectFit
-                imageView.kf.indicatorType = .activity
-                stackView.addArrangedSubview(imageView)
-                imageView.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
-                imageView.heightAnchor.constraint(equalTo: scrollView.heightAnchor).isActive = true
-                
-            }
-            
-            updatePhotos()
+            setupView()
         }
     }
 }

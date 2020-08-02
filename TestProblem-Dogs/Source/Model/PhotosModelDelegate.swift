@@ -7,5 +7,5 @@
 
 protocol PhotosModelDelegate: class {
     
-    func modelDidLoad()
+    func photosModelDidLoad()
 }
