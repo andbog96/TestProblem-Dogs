@@ -19,7 +19,7 @@ class BreedsViewController: UIViewController {
     
     private var fullBreed: FullBreed? = nil
     private var breedsModel: BreedsModelProtocol!
-    private unowned var favouritesModel: FavouritesModelProtocol
+    private var favouritesModel: FavouritesModelProtocol
     
     private let tableView = UITableView(frame: .zero, style: .plain)
     private let activityIndicatorView = UIActivityIndicatorView(style: .large)

@@ -14,7 +14,7 @@ class PhotosViewController: UIViewController {
     
     private var fullBreed: FullBreed
     private var photosModel: PhotosModelProtocol!
-    private unowned var favouritesModel: FavouritesModelProtocol
+    private var favouritesModel: FavouritesModelProtocol
     
     private let activityIndicatorView = UIActivityIndicatorView(style: .large)
     private var collectionView: UICollectionView!
