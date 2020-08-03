@@ -35,7 +35,7 @@ final class BreedsModel: BreedsModelProtocol {
     func loadBreeds(delegate: BreedsModelDelegate) {
         self.delegate = delegate
         
-        service.getBreeds { [self] breeds in
+        service.getBreeds { breeds in
             self.breed = breeds.map(Breed.init)
             
             delegate.breedsModelDidLoad()

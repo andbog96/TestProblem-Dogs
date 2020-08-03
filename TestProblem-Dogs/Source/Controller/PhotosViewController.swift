@@ -59,7 +59,7 @@ class PhotosViewController: UIViewController {
         
         isRotating = true
         
-        coordinator.animate(alongsideTransition: { [self] _ in
+        coordinator.animate(alongsideTransition: { _ in
             let offsetX = CGFloat(self.currentPage) * self.collectionView.frame.width
             self.collectionView.setContentOffset(CGPoint(x: offsetX, y: 0), animated: false)
             self.collectionView.collectionViewLayout.invalidateLayout()
@@ -238,7 +238,7 @@ extension PhotosViewController: PhotosModelDelegate {
         
         func updateView() {
             guard photosModel.photos != nil else {
-                showAlert { [self] _ in
+                showAlert { _ in
                     self.photosModel.loadPhotos(of: self.fullBreed)
                 }
                 

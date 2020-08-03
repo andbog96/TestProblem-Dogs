@@ -21,7 +21,7 @@ final class PhotosModel: PhotosModelProtocol {
     }
     
     func loadPhotos(of breed: FullBreed) {
-        service.getPhotos(of: breed) { [self] photos in
+        service.getPhotos(of: breed) { photos in
             self.photos = photos
             
             self.delegate.photosModelDidLoad()

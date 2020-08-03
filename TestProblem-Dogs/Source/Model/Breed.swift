@@ -13,7 +13,6 @@ struct Breed {
     var subbreeds: [Breed]? = nil
     
     fileprivate static let rootName = "Breeds"
-    fileprivate static let favouritesName = "Favourites"
     
     init(name: String) {
         self.name = name.capitalized
