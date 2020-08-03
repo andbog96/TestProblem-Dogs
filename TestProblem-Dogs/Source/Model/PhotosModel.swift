@@ -24,7 +24,7 @@ final class PhotosModel: PhotosModelProtocol {
         service.getPhotos(of: breed) { [self] photos in
             self.photos = photos
             
-            delegate.photosModelDidLoad()
+            self.delegate.photosModelDidLoad()
         }
     }
 }

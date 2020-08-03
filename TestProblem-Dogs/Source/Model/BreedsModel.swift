@@ -36,7 +36,7 @@ final class BreedsModel: BreedsModelProtocol {
         self.delegate = delegate
         
         service.getBreeds { [self] breeds in
-            breed = breeds.map(Breed.init)
+            self.breed = breeds.map(Breed.init)
             
             delegate.breedsModelDidLoad()
         }
