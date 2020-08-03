@@ -11,16 +11,34 @@ import Alamofire
 final class BreedsModel: BreedsModelProtocol {
     
     weak var delegate: BreedsModelDelegate!
-    var service: DogsServiceProtocol = DogsService.shared
+    var service: DogsServiceProtocol
     
     // nil means error
     private(set) var breed: Breed?
     
-    func loadBreeds() {
-        service.getBreeds { breeds in
-            self.breed = breeds.map(Breed.init)
+    init(service: DogsServiceProtocol) {
+        self.service = service
+    }
+    
+    func getSubbreedsModel(_ subbreedIndex: Int) -> BreedsModelProtocol? {
+        let subbreedsModel = BreedsModel(service: service)
+        
+        if let subbreed = breed?.subbreeds?[subbreedIndex] {
+            subbreedsModel.breed = subbreed
+        } else {
+            return nil
+        }
+        
+        return subbreedsModel
+    }
+    
+    func loadBreeds(delegate: BreedsModelDelegate) {
+        self.delegate = delegate
+        
+        service.getBreeds { [self] breeds in
+            breed = breeds.map(Breed.init)
             
-            self.delegate.breedsModelDidLoad()
+            delegate.breedsModelDidLoad()
         }
     }
 }

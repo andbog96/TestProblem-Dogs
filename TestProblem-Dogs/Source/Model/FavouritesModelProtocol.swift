@@ -7,13 +7,15 @@
 
 import Foundation
 
-protocol FavouritesModelProtocol {
+protocol FavouritesModelProtocol: class {
     
-    var delegate: FavouritesModelDelegate! { get set }
-    var service: DogsServiceProtocol { get set }
+    var breeds: [Breed] { get }
     
-    var favourites: [FullBreed: Set<URL>] { get }
+    func getPhotos(by name: String) -> [URL]
+    
+    func photosCount(_ name: String) -> Int
+    
+    func isFavourite(_ name: String, _ photoURL: URL) -> Bool
 
-    func markPhoto(_ photoURL: URL)
-    func unmarkPhoto(_ photoURL: URL)
+    func changePhotoStatus(_ name: String, _ photoURL: URL) -> Bool
 }

@@ -10,13 +10,13 @@ import Foundation
 struct Breed {
     
     let name: String
-    let subbreeds: [Breed]?
+    var subbreeds: [Breed]? = nil
     
     fileprivate static let rootName = "Breeds"
+    fileprivate static let favouritesName = "Favourites"
     
     init(name: String) {
         self.name = name.capitalized
-        subbreeds = nil
     }
     
     init(subbreeds: [Breed]?) {
@@ -28,8 +28,6 @@ struct Breed {
         
         if let sub = subbreeds, !sub.isEmpty {
             self.subbreeds = sub.sorted{$0.name < $1.name}
-        } else {
-            self.subbreeds = nil
         }
     }
     

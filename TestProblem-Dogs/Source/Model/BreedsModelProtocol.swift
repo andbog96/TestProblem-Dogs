@@ -11,6 +11,7 @@ protocol BreedsModelProtocol: class {
     var service: DogsServiceProtocol { get set }
     
     var breed: Breed? { get }
+    func getSubbreedsModel(_ subbreedIndex: Int) -> BreedsModelProtocol?
     
-    func loadBreeds()
+    func loadBreeds(delegate: BreedsModelDelegate)
 }

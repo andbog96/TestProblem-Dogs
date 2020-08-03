@@ -8,9 +8,7 @@
 import Foundation
 import Alamofire
 
-struct DogsService: DogsServiceProtocol {
-    
-    static let shared: Self = Self()
+struct AllBreedsService: DogsServiceProtocol {
     
     private let allBreedsURLString = "https://dog.ceo/api/breeds/list/all"
     private func getPhotosULRStrings(for breed: FullBreed) -> String {

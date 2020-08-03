@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		C14FA51B24D1CBD4008CA79C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14FA51A24D1CBD4008CA79C /* AppDelegate.swift */; };
 		C14FA51D24D1CBD4008CA79C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14FA51C24D1CBD4008CA79C /* SceneDelegate.swift */; };
-		C14FA52524D1CBD4008CA79C /* TestProblem_Dogs.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C14FA52324D1CBD4008CA79C /* TestProblem_Dogs.xcdatamodeld */; };
 		C14FA52724D1CBD6008CA79C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C14FA52624D1CBD6008CA79C /* Assets.xcassets */; };
 		C14FA52A24D1CBD6008CA79C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C14FA52824D1CBD6008CA79C /* LaunchScreen.storyboard */; };
 		C14FA53A24D1D4E6008CA79C /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14FA53924D1D4E6008CA79C /* MainTabBarController.swift */; };
@@ -21,7 +20,7 @@
 		C14FA54D24D29F62008CA79C /* BreedsModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14FA54C24D29F62008CA79C /* BreedsModelProtocol.swift */; };
 		C14FA54F24D2A057008CA79C /* BreedsModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14FA54E24D2A057008CA79C /* BreedsModelDelegate.swift */; };
 		C14FA55124D2A2DE008CA79C /* Breed.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14FA55024D2A2DE008CA79C /* Breed.swift */; };
-		C14FA55424D2AA8A008CA79C /* DogsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14FA55324D2AA8A008CA79C /* DogsService.swift */; };
+		C14FA55424D2AA8A008CA79C /* AllBreedsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14FA55324D2AA8A008CA79C /* AllBreedsService.swift */; };
 		C14FA55624D2AADC008CA79C /* DogsServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14FA55524D2AADC008CA79C /* DogsServiceProtocol.swift */; };
 		C16E285E24D44BF6009782CE /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = C16E285D24D44BF6009782CE /* Kingfisher */; };
 		C16E286024D47FE7009782CE /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16E285F24D47FE7009782CE /* PhotosViewController.swift */; };
@@ -30,7 +29,7 @@
 		C16E286724D6E453009782CE /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16E286624D6E453009782CE /* PhotoCollectionViewCell.swift */; };
 		C16E286924D7170A009782CE /* FavouritesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16E286824D7170A009782CE /* FavouritesModel.swift */; };
 		C16E286B24D71BFA009782CE /* FavouritesModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16E286A24D71BFA009782CE /* FavouritesModelProtocol.swift */; };
-		C16E286D24D71C05009782CE /* FavouritesModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16E286C24D71C05009782CE /* FavouritesModelDelegate.swift */; };
+		C188A36424D7F72B0055C941 /* FavouritesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C188A36324D7F72B0055C941 /* FavouritesService.swift */; };
 		C18C30B124D2FA75001807B9 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18C30AF24D2FA75001807B9 /* TableViewCell.swift */; };
 		C18C30B924D35494001807B9 /* PhotosModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18C30B824D35494001807B9 /* PhotosModel.swift */; };
 		C18C30BB24D354D7001807B9 /* PhotosModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18C30BA24D354D7001807B9 /* PhotosModelProtocol.swift */; };
@@ -41,7 +40,6 @@
 		C14FA51724D1CBD4008CA79C /* TestProblem-Dogs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TestProblem-Dogs.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C14FA51A24D1CBD4008CA79C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C14FA51C24D1CBD4008CA79C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		C14FA52424D1CBD4008CA79C /* TestProblem_Dogs.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TestProblem_Dogs.xcdatamodel; sourceTree = "<group>"; };
 		C14FA52624D1CBD6008CA79C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C14FA52924D1CBD6008CA79C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C14FA52B24D1CBD6008CA79C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -53,14 +51,14 @@
 		C14FA54C24D29F62008CA79C /* BreedsModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedsModelProtocol.swift; sourceTree = "<group>"; };
 		C14FA54E24D2A057008CA79C /* BreedsModelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedsModelDelegate.swift; sourceTree = "<group>"; };
 		C14FA55024D2A2DE008CA79C /* Breed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Breed.swift; sourceTree = "<group>"; };
-		C14FA55324D2AA8A008CA79C /* DogsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogsService.swift; sourceTree = "<group>"; };
+		C14FA55324D2AA8A008CA79C /* AllBreedsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllBreedsService.swift; sourceTree = "<group>"; };
 		C14FA55524D2AADC008CA79C /* DogsServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogsServiceProtocol.swift; sourceTree = "<group>"; };
 		C16E285F24D47FE7009782CE /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
 		C16E286124D547F9009782CE /* HeartButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartButton.swift; sourceTree = "<group>"; };
 		C16E286624D6E453009782CE /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		C16E286824D7170A009782CE /* FavouritesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesModel.swift; sourceTree = "<group>"; };
 		C16E286A24D71BFA009782CE /* FavouritesModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesModelProtocol.swift; sourceTree = "<group>"; };
-		C16E286C24D71C05009782CE /* FavouritesModelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesModelDelegate.swift; sourceTree = "<group>"; };
+		C188A36324D7F72B0055C941 /* FavouritesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesService.swift; sourceTree = "<group>"; };
 		C18C30AF24D2FA75001807B9 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		C18C30B824D35494001807B9 /* PhotosModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosModel.swift; sourceTree = "<group>"; };
 		C18C30BA24D354D7001807B9 /* PhotosModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosModelProtocol.swift; sourceTree = "<group>"; };
@@ -104,7 +102,6 @@
 				C14FA52824D1CBD6008CA79C /* LaunchScreen.storyboard */,
 				C14FA52624D1CBD6008CA79C /* Assets.xcassets */,
 				C14FA52B24D1CBD6008CA79C /* Info.plist */,
-				C14FA52324D1CBD4008CA79C /* TestProblem_Dogs.xcdatamodeld */,
 			);
 			path = "TestProblem-Dogs";
 			sourceTree = "<group>";
@@ -134,7 +131,6 @@
 				C18C30BC24D354E4001807B9 /* PhotosModelDelegate.swift */,
 				C16E286824D7170A009782CE /* FavouritesModel.swift */,
 				C16E286A24D71BFA009782CE /* FavouritesModelProtocol.swift */,
-				C16E286C24D71C05009782CE /* FavouritesModelDelegate.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -164,8 +160,9 @@
 		C14FA55224D2AA6C008CA79C /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				C14FA55324D2AA8A008CA79C /* DogsService.swift */,
 				C14FA55524D2AADC008CA79C /* DogsServiceProtocol.swift */,
+				C14FA55324D2AA8A008CA79C /* AllBreedsService.swift */,
+				C188A36324D7F72B0055C941 /* FavouritesService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -252,8 +249,9 @@
 				C16E286224D547F9009782CE /* HeartButton.swift in Sources */,
 				C16E286724D6E453009782CE /* PhotoCollectionViewCell.swift in Sources */,
 				C18C30B124D2FA75001807B9 /* TableViewCell.swift in Sources */,
+				C188A36424D7F72B0055C941 /* FavouritesService.swift in Sources */,
 				C14FA54724D1ED25008CA79C /* BreedsModel.swift in Sources */,
-				C14FA55424D2AA8A008CA79C /* DogsService.swift in Sources */,
+				C14FA55424D2AA8A008CA79C /* AllBreedsService.swift in Sources */,
 				C14FA55624D2AADC008CA79C /* DogsServiceProtocol.swift in Sources */,
 				C18C30BD24D354E4001807B9 /* PhotosModelDelegate.swift in Sources */,
 				C14FA51B24D1CBD4008CA79C /* AppDelegate.swift in Sources */,
@@ -262,14 +260,12 @@
 				C16E286924D7170A009782CE /* FavouritesModel.swift in Sources */,
 				C16E286024D47FE7009782CE /* PhotosViewController.swift in Sources */,
 				C14FA54224D1DCD8008CA79C /* FavouritesNavigationController.swift in Sources */,
-				C14FA52524D1CBD4008CA79C /* TestProblem_Dogs.xcdatamodeld in Sources */,
 				C14FA55124D2A2DE008CA79C /* Breed.swift in Sources */,
 				C18C30B924D35494001807B9 /* PhotosModel.swift in Sources */,
 				C14FA53C24D1D611008CA79C /* BreedsViewController.swift in Sources */,
 				C18C30BB24D354D7001807B9 /* PhotosModelProtocol.swift in Sources */,
 				C14FA54D24D29F62008CA79C /* BreedsModelProtocol.swift in Sources */,
 				C14FA51D24D1CBD4008CA79C /* SceneDelegate.swift in Sources */,
-				C16E286D24D71C05009782CE /* FavouritesModelDelegate.swift in Sources */,
 				C14FA54024D1DC76008CA79C /* BreedsNavigationController.swift in Sources */,
 				C16E286B24D71BFA009782CE /* FavouritesModelProtocol.swift in Sources */,
 			);
@@ -512,19 +508,6 @@
 			productName = RealmSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
-
-/* Begin XCVersionGroup section */
-		C14FA52324D1CBD4008CA79C /* TestProblem_Dogs.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				C14FA52424D1CBD4008CA79C /* TestProblem_Dogs.xcdatamodel */,
-			);
-			currentVersion = C14FA52424D1CBD4008CA79C /* TestProblem_Dogs.xcdatamodel */;
-			path = TestProblem_Dogs.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = C14FA50F24D1CBD4008CA79C /* Project object */;
 }

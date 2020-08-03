@@ -9,11 +9,13 @@ import UIKit
 
 class MainTabBarController: UITabBarController {
     
+    private let favouritesModel = FavouritesModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let breedsNavigationController = BreedsNavigationController()
-        let favouritesNavigationController = FavouritesNavigationController()
+        let breedsNavigationController = BreedsNavigationController(favouritesModel: favouritesModel)
+        let favouritesNavigationController = FavouritesNavigationController(favouritesModel: favouritesModel)
         
         setViewControllers([breedsNavigationController, favouritesNavigationController], animated: true)
     }

@@ -11,10 +11,14 @@ import Foundation
 final class PhotosModel: PhotosModelProtocol {
     
     var delegate: PhotosModelDelegate!
-    var service: DogsServiceProtocol = DogsService.shared
+    var service: DogsServiceProtocol
     
     // nil means error
     private(set) var photos: [URL]?
+    
+    init(service: DogsServiceProtocol) {
+        self.service = service
+    }
     
     func loadPhotos(of breed: FullBreed) {
         service.getPhotos(of: breed) { [self] photos in

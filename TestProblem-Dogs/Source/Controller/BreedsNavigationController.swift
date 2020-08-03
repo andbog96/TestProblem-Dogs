@@ -9,11 +9,10 @@ import UIKit
 
 class BreedsNavigationController: UINavigationController {
     
-    init() {
-        let breedsViewController = BreedsViewController()
-        let breedsModel = BreedsModel()
-        breedsModel.service = DogsService.shared
-        breedsViewController.breedsModel = breedsModel
+    init(favouritesModel: FavouritesModelProtocol) {
+        let breedsModel = BreedsModel(service: AllBreedsService())
+        let breedsViewController = BreedsViewController(breedsModel: breedsModel,
+                                                        favouritesModel: favouritesModel)
         
         super.init(rootViewController: breedsViewController)
         
