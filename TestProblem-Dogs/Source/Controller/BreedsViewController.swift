@@ -119,9 +119,12 @@ extension BreedsViewController: UITableViewDataSource {
             cell.firstLabel.text = breed.name
             cell.accessoryType = .disclosureIndicator
             if let subbreeds = breed.subbreeds {
-                cell.secondLabel.text = "(\(subbreeds.count) subbreeds)"
+                let ending = subbreeds.count == 1 ? "" : "s"
+                cell.secondLabel.text = "(\(subbreeds.count) subbreed\(ending))"
             } else if viewType == .favourite {
-                cell.secondLabel.text = "(\(favouritesModel.photosCount(breed.name)) photos)"
+                let count = favouritesModel.photosCount(breed.name)
+                let ending = count == 1 ? "" : "s"
+                cell.secondLabel.text = "(\(count) photo\(ending))"
             }
         }
         
