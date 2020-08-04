@@ -52,12 +52,12 @@ extension FavouritesViewController {
         }
         
         if let breed = breedsModel.breed?.subbreeds?[indexPath.row] {
-            cell.firstLabel.text = breed.name
+            cell.textLabel?.text = breed.name
             cell.accessoryType = .disclosureIndicator
             
             let count = favouritesModel.photosCount(breed.name)
             let ending = count == 1 ? "" : "s"
-            cell.secondLabel.text = "(\(count) photo\(ending))"
+            cell.secondaryLabel.text = "(\(count) photo\(ending))"
         }
         
         return cell

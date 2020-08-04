@@ -11,36 +11,25 @@ class TableViewCell: UITableViewCell {
     
     static let reuseIdentifier = "TableViewCell"
     
-    private static let labelsFontSizeDifference: CGFloat = 3
-    private let spacing: CGFloat = 16
+    private static let labelsFontSizeDifference: CGFloat = 5
+    private let spacing: CGFloat = 10
 
-    let firstLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        
-        return label
-    }()
-    
-    var secondLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = UIColor.secondaryLabel
-        label.font = label.font.withSize(label.font.pointSize - labelsFontSizeDifference)
-        
-        return label
-    }()
+    var secondaryLabel = UILabel()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        super.init(style: .value1, reuseIdentifier: reuseIdentifier)
         
-        addSubview(firstLabel)
-        addSubview(secondLabel)
+        secondaryLabel.translatesAutoresizingMaskIntoConstraints = false
+        secondaryLabel.font = secondaryLabel.font
+            .withSize(secondaryLabel.font.pointSize - TableViewCell.labelsFontSizeDifference)
+        secondaryLabel.textColor = detailTextLabel?.textColor ?? .secondaryLabel
+        addSubview(secondaryLabel)
         
-        firstLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: spacing).isActive = true
-        firstLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        
-        secondLabel.leadingAnchor.constraint(equalTo: firstLabel.trailingAnchor, constant: spacing).isActive = true
-        secondLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        if let textLabel = textLabel {
+            secondaryLabel.leadingAnchor.constraint(equalTo: textLabel.trailingAnchor, constant: spacing)
+                .isActive = true
+        }
+        secondaryLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
     }
     
     required init?(coder: NSCoder) {
@@ -51,7 +40,7 @@ class TableViewCell: UITableViewCell {
         super.prepareForReuse()
         
         accessoryType = .none
-        firstLabel.text = ""
-        secondLabel.text = ""
+        textLabel?.text = ""
+        secondaryLabel.text = ""
     }
 }

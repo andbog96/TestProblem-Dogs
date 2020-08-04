@@ -50,8 +50,6 @@ class BreedsViewController: UIViewController {
             setupView()
         }
         
-        tableView.register(TableViewCell.self, forCellReuseIdentifier: TableViewCell.reuseIdentifier)
-        tableView.translatesAutoresizingMaskIntoConstraints = false
     }
     
     func setupView() {
@@ -59,9 +57,11 @@ class BreedsViewController: UIViewController {
         
         navigationItem.title = breedsModel.breed?.name
         
-        view.addSubview(tableView)
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.register(TableViewCell.self, forCellReuseIdentifier: TableViewCell.reuseIdentifier)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(tableView)
         tableView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         tableView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         tableView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
@@ -82,11 +82,11 @@ extension BreedsViewController: UITableViewDataSource {
         }
         
         if let subbreed = breedsModel.breed?.subbreeds?[indexPath.row] {
-            cell.firstLabel.text = subbreed.name
+            cell.textLabel?.text = subbreed.name
             cell.accessoryType = .disclosureIndicator
             if let subbreeds = subbreed.subbreeds {
                 let ending = subbreeds.count == 1 ? "" : "s"
-                cell.secondLabel.text = "(\(subbreeds.count) subbreed\(ending))"
+                cell.secondaryLabel.text = "(\(subbreeds.count) subbreed\(ending))"
             }
         }
         
