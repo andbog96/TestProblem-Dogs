@@ -20,7 +20,8 @@ final class FavouritesViewController: BreedsViewController {
     }
     
     override func setupView() {
-        emptyLabel.text = "You haven't liked any photos yet."
+        emptyLabel.text = "You haven't liked any photos yet"
+        emptyLabel.textColor = .secondaryLabel
         emptyLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(emptyLabel)
         emptyLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
