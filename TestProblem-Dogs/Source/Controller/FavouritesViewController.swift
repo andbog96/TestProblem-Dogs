@@ -14,8 +14,6 @@ final class FavouritesViewController: BreedsViewController {
     private let emptyLabel = UILabel()
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
         updateView()
     }
     
