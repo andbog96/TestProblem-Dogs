@@ -6,30 +6,19 @@
 //
 
 import UIKit
-import Alamofire
 
 class BreedsViewController: UIViewController {
-    
-    private enum ViewType {
-        case breed
-        case favourite
-    }
-    
-    private var viewType: ViewType
     
     private var fullBreed: FullBreed? = nil
     private var breedsModel: BreedsModelProtocol!
     private var favouritesModel: FavouritesModelProtocol
     
-    private let tableView = UITableView(frame: .zero, style: .plain)
+    let tableView = UITableView(frame: .zero, style: .plain)
     private let activityIndicatorView = UIActivityIndicatorView(style: .large)
-    private let emptyLabel = UILabel()
     
-    init(breedsModel: BreedsModelProtocol, favouritesModel: FavouritesModelProtocol, isFavourites: Bool = false) {
+    init(breedsModel: BreedsModelProtocol, favouritesModel: FavouritesModelProtocol) {
         self.breedsModel = breedsModel
         self.favouritesModel = favouritesModel
-        
-        viewType = isFavourites ? .favourite : .breed
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -59,26 +48,10 @@ class BreedsViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-        if viewType == .favourite {
-            updateView()
-        }
-    }
-    
-    private func setupView() {
+    func setupView() {
         activityIndicatorView.removeFromSuperview()
         
         navigationItem.title = breedsModel.breed?.name
-        
-        if viewType == .favourite {
-            emptyLabel.text = "You haven't liked any photos yet."
-            emptyLabel.translatesAutoresizingMaskIntoConstraints = false
-            view.addSubview(emptyLabel)
-            emptyLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-            emptyLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        }
         
         view.addSubview(tableView)
         tableView.delegate = self
@@ -87,19 +60,6 @@ class BreedsViewController: UIViewController {
         tableView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         tableView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
         tableView.heightAnchor.constraint(equalTo: view.heightAnchor).isActive = true
-    }
-    
-    func updateView() {
-        breedsModel.loadBreeds(delegate: self)
-        if let count = breedsModel.breed?.subbreeds?.count,
-           count != 0 {
-            emptyLabel.isHidden = true
-            tableView.isHidden = false
-            tableView.reloadData()
-        } else {
-            emptyLabel.isHidden = false
-            tableView.isHidden = true
-        }
     }
 }
 
@@ -115,16 +75,12 @@ extension BreedsViewController: UITableViewDataSource {
             return TableViewCell()
         }
         
-        if let breed = breedsModel.breed?.subbreeds?[indexPath.row] {
-            cell.firstLabel.text = breed.name
+        if let subbreed = breedsModel.breed?.subbreeds?[indexPath.row] {
+            cell.firstLabel.text = subbreed.name
             cell.accessoryType = .disclosureIndicator
-            if let subbreeds = breed.subbreeds {
+            if let subbreeds = subbreed.subbreeds {
                 let ending = subbreeds.count == 1 ? "" : "s"
                 cell.secondLabel.text = "(\(subbreeds.count) subbreed\(ending))"
-            } else if viewType == .favourite {
-                let count = favouritesModel.photosCount(breed.name)
-                let ending = count == 1 ? "" : "s"
-                cell.secondLabel.text = "(\(count) photo\(ending))"
             }
         }
         
@@ -140,7 +96,7 @@ extension BreedsViewController: UITableViewDelegate {
             return
         }
         
-        if subbreedsModel.breed?.subbreeds != nil {
+        if subbreed.subbreeds != nil {
             let subbreedsViewController = BreedsViewController(breedsModel: subbreedsModel,
                                                                favouritesModel: favouritesModel)
             subbreedsViewController.fullBreed = FullBreed(breed: subbreed.name, subbreed: nil)
@@ -148,7 +104,7 @@ extension BreedsViewController: UITableViewDelegate {
             navigationController?.pushViewController(subbreedsViewController, animated: true)
         } else {
             let fullBreed: FullBreed =
-                self.fullBreed == nil || viewType == .favourite
+                self.fullBreed == nil
                 ? FullBreed(breed: subbreed.name, subbreed: nil)
                 : FullBreed(breed: self.fullBreed!.breed, subbreed: subbreed.name)
             

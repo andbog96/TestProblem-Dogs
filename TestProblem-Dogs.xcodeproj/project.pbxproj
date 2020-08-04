@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C13358C124D927F5004794B8 /* FavouritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13358C024D927F5004794B8 /* FavouritesViewController.swift */; };
 		C14FA51B24D1CBD4008CA79C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14FA51A24D1CBD4008CA79C /* AppDelegate.swift */; };
 		C14FA51D24D1CBD4008CA79C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14FA51C24D1CBD4008CA79C /* SceneDelegate.swift */; };
 		C14FA52724D1CBD6008CA79C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C14FA52624D1CBD6008CA79C /* Assets.xcassets */; };
@@ -37,6 +38,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C13358C024D927F5004794B8 /* FavouritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewController.swift; sourceTree = "<group>"; };
 		C14FA51724D1CBD4008CA79C /* TestProblem-Dogs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TestProblem-Dogs.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C14FA51A24D1CBD4008CA79C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C14FA51C24D1CBD4008CA79C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 				C14FA53B24D1D611008CA79C /* BreedsViewController.swift */,
 				C16E285F24D47FE7009782CE /* PhotosViewController.swift */,
 				C14FA54124D1DCD8008CA79C /* FavouritesNavigationController.swift */,
+				C13358C024D927F5004794B8 /* FavouritesViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -246,6 +249,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C13358C124D927F5004794B8 /* FavouritesViewController.swift in Sources */,
 				C16E286224D547F9009782CE /* HeartButton.swift in Sources */,
 				C16E286724D6E453009782CE /* PhotoCollectionViewCell.swift in Sources */,
 				C18C30B124D2FA75001807B9 /* TableViewCell.swift in Sources */,

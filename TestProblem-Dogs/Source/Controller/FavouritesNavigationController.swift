@@ -13,9 +13,8 @@ class FavouritesNavigationController: UINavigationController {
     
     init(favouritesModel: FavouritesModelProtocol) {
         let breedsModel = BreedsModel(service: FavouritesService(favouritesModel: favouritesModel))
-        breedsViewController = BreedsViewController(breedsModel: breedsModel,
-                                                    favouritesModel: favouritesModel,
-                                                    isFavourites: true)
+        breedsViewController = FavouritesViewController(breedsModel: breedsModel,
+                                                    favouritesModel: favouritesModel)
         
         super.init(rootViewController: breedsViewController)
         

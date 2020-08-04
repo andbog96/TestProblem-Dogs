@@ -22,7 +22,8 @@ class PhotosViewController: UIViewController {
     
     private var currentPage = 0
     
-    init(fullBreed: FullBreed, photosModel: PhotosModelProtocol, favouritesModel: FavouritesModelProtocol) {        self.fullBreed = fullBreed
+    init(fullBreed: FullBreed, photosModel: PhotosModelProtocol, favouritesModel: FavouritesModelProtocol) {
+        self.fullBreed = fullBreed
         self.photosModel = photosModel
         self.favouritesModel = favouritesModel
         
