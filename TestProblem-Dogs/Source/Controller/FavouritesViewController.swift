@@ -9,24 +9,9 @@ import Foundation
 
 import UIKit
 
-class FavouritesViewController: BreedsViewController {
-    
-    private var fullBreed: FullBreed? = nil
-    private var breedsModel: BreedsModelProtocol!
-    private var favouritesModel: FavouritesModelProtocol
+final class FavouritesViewController: BreedsViewController {
     
     private let emptyLabel = UILabel()
-    
-    override init(breedsModel: BreedsModelProtocol, favouritesModel: FavouritesModelProtocol) {
-        self.breedsModel = breedsModel
-        self.favouritesModel = favouritesModel
-        
-        super.init(breedsModel: breedsModel, favouritesModel: favouritesModel)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

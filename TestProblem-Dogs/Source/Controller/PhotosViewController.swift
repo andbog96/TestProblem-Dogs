@@ -150,7 +150,8 @@ class PhotosViewController: UIViewController {
             if let photoURL = photosModel.photos?[currentPage] {
                 KingfisherManager.shared.retrieveImage(with: photoURL) { result in
                     switch result {
-                    case .failure(_):
+                    case .failure(let error):
+                        print(error)
                         self.showAlert()
                     case .success(let value):
                         let activity = UIActivityViewController(activityItems: [value.image],
@@ -221,7 +222,8 @@ extension PhotosViewController: UICollectionViewDataSource {
         
         if let photoURL = photosModel.photos?[indexPath.row] {
             cell.setImage(photoURL) { result in
-                if case .failure(_) = result {
+                if case .failure(let error) = result {
+                    print(error)
                     self.showAlert()
                 }
             }

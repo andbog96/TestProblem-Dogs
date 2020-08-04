@@ -9,9 +9,9 @@ import UIKit
 
 class BreedsViewController: UIViewController {
     
-    private var fullBreed: FullBreed? = nil
-    private var breedsModel: BreedsModelProtocol!
-    private var favouritesModel: FavouritesModelProtocol
+    var fullBreed: FullBreed? = nil
+    var breedsModel: BreedsModelProtocol!
+    var favouritesModel: FavouritesModelProtocol
     
     let tableView = UITableView(frame: .zero, style: .plain)
     private let activityIndicatorView = UIActivityIndicatorView(style: .large)
