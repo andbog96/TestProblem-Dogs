@@ -83,6 +83,7 @@ class PhotosViewController: UIViewController {
         layout.minimumLineSpacing = 0
         collectionView = UICollectionView(frame: view.frame, collectionViewLayout: layout)
         collectionView.isPagingEnabled = true
+        collectionView.alwaysBounceHorizontal = true
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.backgroundColor = .systemBackground
         collectionView.translatesAutoresizingMaskIntoConstraints = false
